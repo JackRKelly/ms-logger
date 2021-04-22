@@ -1,0 +1,12 @@
+{
+  "name": "graphql-logger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JackRKelly/graphql-logger.git",
+  "author": "Kelly, Jack <jack.kelly@myyellow.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.4"
+  }
+}
