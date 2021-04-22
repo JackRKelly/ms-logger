@@ -1,5 +1,5 @@
 import { Router } from "express";
-import signale from "signale";
+import { signale } from "../../lib/signale";
 import uniqid from "uniqid";
 import cookie from "cookie";
 
