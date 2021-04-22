@@ -23,7 +23,7 @@ log.post("/security", (req, res) => {
   res.sendStatus(200);
 });
 
-log.post("/warn", (req, res) => {
-  signale.warn(`Warn Log:`, req.body);
+log.post("/warning", (req, res) => {
+  signale.warning(`Warning Log:`, req.body);
   res.sendStatus(200);
 });
