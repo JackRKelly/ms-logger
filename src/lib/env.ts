@@ -22,4 +22,6 @@ export class env {
     "NODE_ENV",
     "production"
   );
+
+  static readonly Port = validateEnv("PORT", "8888");
 }

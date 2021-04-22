@@ -1,15 +1,29 @@
 import { Router } from "express";
-
-import { info } from "./log/info";
-import { error } from "./log/error";
-import { critical } from "./log/critical";
-import { security } from "./log/security";
-import { warning } from "./log/warning";
+import { signale } from "../../lib/signale";
 
 export const log = Router();
 
-log.use("/info", info);
-log.use("/error", error);
-log.use("/critical", critical);
-log.use("/security", security);
-log.use("/warning", warning);
+log.post("/critical", (req, res) => {
+  signale.critical(`Critical Log:`, req.body);
+  res.sendStatus(200);
+});
+
+log.post("/error", (req, res) => {
+  signale.error(`Error Log:`, req.body);
+  res.sendStatus(200);
+});
+
+log.post("/info", (req, res) => {
+  signale.info(`Info Log:`, req.body);
+  res.sendStatus(200);
+});
+
+log.post("/security", (req, res) => {
+  signale.security(`Security Log:`, req.body);
+  res.sendStatus(200);
+});
+
+log.post("/warn", (req, res) => {
+  signale.warn(`Warn Log:`, req.body);
+  res.sendStatus(200);
+});

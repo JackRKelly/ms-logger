@@ -8,7 +8,9 @@ id.get("/", (req, res) => {
   try {
     let uid = uniqid("logging_microservice-");
     signale.info(`UID Generated: ${uid}`);
-    res.send({ uid }).status(200);
+    res.status(200).json({
+      uid,
+    });
   } catch (error) {
     signale.error(error);
     res.sendStatus(500);
