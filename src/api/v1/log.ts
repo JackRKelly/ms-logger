@@ -28,3 +28,10 @@ log.post("/warning", requireTraceId, (req, res) => {
   signale.warning(`Warning Log:`, req.body);
   res.sendStatus(200);
 });
+
+log.get("/:id", (req, res) => {
+  signale.success(`Get logs for:`, req.params.id);
+  res.status(200).send({
+    message: "This route is a work in progress, DB needs to be implemented",
+  });
+});
