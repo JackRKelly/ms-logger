@@ -29,3 +29,27 @@ id.post("/", (req, res) => {
     res.sendStatus(500);
   }
 });
+
+id.get("/", (req, res) => {
+  try {
+    if (req.headers.cookie) {
+      const cookies = cookie.parse(req.headers.cookie);
+
+      signale.info(cookies);
+
+      if (cookies.traceId) {
+        res.status(200).json({
+          message: "Trace ID Cookie present.",
+        });
+      }
+    }
+
+    res.status(404).json({
+      message: "Trace ID Cookie not found, please generate a Trace ID.",
+    });
+  } catch (error) {
+    signale.error(error);
+
+    res.sendStatus(500);
+  }
+});
