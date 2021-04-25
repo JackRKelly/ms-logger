@@ -1,7 +1,6 @@
 import fs from "fs";
 import signale from "signale";
-import * as cookie from "cookie";
-import { LogType } from "../@types";
+import { LogType } from "../types";
 import { getTraceId } from "../util";
 
 export class LogStream {
