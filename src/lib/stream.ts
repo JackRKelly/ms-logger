@@ -1,7 +1,7 @@
 import fs from "fs";
-import { IncomingHttpHeaders } from "http";
 import signale from "signale";
 import * as cookie from "cookie";
+import { LogType } from "../@types";
 
 export class LogStream {
   stream: fs.WriteStream;
@@ -10,13 +10,11 @@ export class LogStream {
     this.stream.write(message);
   }
 
-  writeLog(type: string, requestCookies: string | undefined, body: unknown) {
+  writeLog(type: LogType, cookies: string | undefined, body: unknown) {
     let traceId: string | undefined;
 
-    if (requestCookies) {
-      const cookies = cookie.parse(requestCookies);
-
-      traceId = cookies.traceId;
+    if (cookies) {
+      traceId = cookie.parse(cookies).traceId;
     }
 
     this.writeStream(
@@ -33,7 +31,6 @@ export class LogStream {
 
   constructor() {
     this.stream = fs.createWriteStream(`logs/log-stream.log`, {
-      flags: "a",
       autoClose: true,
     });
     this.stream.on("error", (err) => {
