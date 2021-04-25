@@ -1,8 +1,11 @@
 import express from "express";
 import { signale } from "./lib/signale";
 import { env } from "./lib/env";
+import { LogStream } from "./lib/stream";
 
 signale.info(`App is bootstrapping in ${env.NodeEnv}`);
+
+export const logStream = new LogStream();
 
 (async () => {
   const { api: v1 } = await import("./api/v1");

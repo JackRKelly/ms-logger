@@ -13,8 +13,8 @@ export const requireTraceId: RequestHandler = async function (req, res, next) {
     }
   }
 
-  signale.security("Trace ID not present in making log request");
+  signale.security("Trace ID not present in making log request.");
   res
     .status(400)
-    .json({ message: "Please include your tracing id with all log posts." });
+    .json({ message: "Please include your Trace ID with all log posts." });
 };
