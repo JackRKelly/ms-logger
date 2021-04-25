@@ -11,33 +11,44 @@ log.post("/critical", requireTraceId, (req, res) => {
     logStream.writeLog("critical", req.headers.cookie, req.body);
     res.sendStatus(200);
   } catch (error) {
-    signale.error(error);
     res.status(500).json({ error });
   }
 });
 
 log.post("/error", requireTraceId, (req, res) => {
   try {
-    signale.error(`Error Log:`, req.body);
+    logStream.writeLog("error", req.headers.cookie, req.body);
     res.sendStatus(200);
   } catch (error) {
-    res.sendStatus(500);
+    res.status(500).json({ error });
   }
 });
 
 log.post("/info", requireTraceId, (req, res) => {
-  signale.info(`Info Log:`, req.body);
-  res.sendStatus(200);
+  try {
+    logStream.writeLog("info", req.headers.cookie, req.body);
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 log.post("/security", requireTraceId, (req, res) => {
-  signale.security(`Security Log:`, req.body);
-  res.sendStatus(200);
+  try {
+    logStream.writeLog("security", req.headers.cookie, req.body);
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 log.post("/warning", requireTraceId, (req, res) => {
-  signale.warning(`Warning Log:`, req.body);
-  res.sendStatus(200);
+  try {
+    logStream.writeLog("warning", req.headers.cookie, req.body);
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 log.get("/:id", (req, res) => {
