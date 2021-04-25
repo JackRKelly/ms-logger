@@ -42,11 +42,11 @@ id.get("/", (req, res) => {
           message: "Trace ID Cookie present.",
         });
       }
+    } else {
+      res.status(404).json({
+        message: "Trace ID Cookie not found, please generate a Trace ID.",
+      });
     }
-
-    res.status(404).json({
-      message: "Trace ID Cookie not found, please generate a Trace ID.",
-    });
   } catch (error) {
     signale.error(error);
 

@@ -6,11 +6,16 @@ import { requireTraceId } from "../../util/middleware";
 export const log = Router();
 
 log.post("/critical", requireTraceId, (req, res) => {
-  signale.critical(`Critical Log:`, req.body);
-  logStream.writeLog(
-    `${new Date().toISOString()} - Critical: ${JSON.stringify(req.body)}\n`
-  );
-  res.sendStatus(200);
+  //TODO: type body when log JSON format is established
+  try {
+    const { body } = req;
+    const { headers } = body;
+
+    logStream.writeLog("critical", headers, body);
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 log.post("/error", requireTraceId, (req, res) => {
