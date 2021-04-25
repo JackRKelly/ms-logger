@@ -2,6 +2,7 @@ import fs from "fs";
 import signale from "signale";
 import * as cookie from "cookie";
 import { LogType } from "../@types";
+import { getTraceId } from "../util";
 
 export class LogStream {
   stream: fs.WriteStream;
@@ -14,7 +15,7 @@ export class LogStream {
     let traceId: string | undefined;
 
     if (cookies) {
-      traceId = cookie.parse(cookies).traceId;
+      traceId = getTraceId(cookies);
     }
 
     this.writeStream(
