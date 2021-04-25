@@ -8,12 +8,10 @@ export const log = Router();
 log.post("/critical", requireTraceId, (req, res) => {
   //TODO: type body when log JSON format is established
   try {
-    const { body } = req;
-    const { headers } = body;
-
-    logStream.writeLog("critical", headers, body);
+    logStream.writeLog("critical", req.headers.cookie, req.body);
     res.sendStatus(200);
   } catch (error) {
+    signale.error(error);
     res.status(500).json({ error });
   }
 });
