@@ -12,7 +12,7 @@ export class LogStream {
   }
 
   writeLog(type: LogType, cookies: string | undefined, body: unknown) {
-    let traceId: string | undefined;
+    let traceId: string | null = null;
 
     if (cookies) {
       traceId = getTraceId(cookies);
